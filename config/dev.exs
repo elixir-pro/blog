@@ -2,12 +2,9 @@ use Mix.Config
 
 # Configure your database
 config :blog, Blog.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "blog_dev",
-  hostname: "localhost",
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  # ssl: true,
+  url: "postgres://lglawibh:4tCTrghXwbzGxiWgEn6syKd1IZ1ikuhX@raja.db.elephantsql.com:5432/lglawibh",
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "2")
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
