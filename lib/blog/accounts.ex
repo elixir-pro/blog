@@ -5,6 +5,7 @@ defmodule Blog.Accounts do
 
   import Ecto.Query, warn: false
   alias Blog.Repo
+  alias Blog.Notifications.Repository.Notification
 
   alias Blog.Accounts.User
 
@@ -50,9 +51,14 @@ defmodule Blog.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
-    %User{}
+    {:ok, user} = %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
+
+    Notification.send(%{user_id: user.id, message: "User #{user.first_name} was created at: #{user.inserted_at}"})
+
+    IO.inspect Notification.get_notification(user.id)
+    {:ok, user}
   end
 
   @doc """

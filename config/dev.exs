@@ -5,9 +5,11 @@ config :blog, Blog.Repo,
   username: "postgres",
   password: "postgres",
   database: "blog_dev",
-  hostname: "db",
+  hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
+
+  config :blog, :mongo_db, url: System.get_env("MONGO_DB")
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
