@@ -29,9 +29,9 @@ defmodule BlogWeb.PostController do
 
   def delete(conn, %{"id" => id}) do
     post = Posts.get_post!(id)
+
     with {:ok, _post} <- Posts.delete_post(post),
-         do:
-           send_resp(conn, :no_content, "")
+         do: send_resp(conn, :no_content, "")
   end
 
   def index(conn, _) do

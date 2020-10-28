@@ -15,7 +15,6 @@ defmodule BlogWeb.Router do
     get "/posts/:id", PostController, :show
     put "/posts/:id/update", PostController, :update
     post "/posts", PostController, :create
-
   end
 
   # Enables LiveDashboard only for development
