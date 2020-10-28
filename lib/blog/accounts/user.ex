@@ -29,7 +29,11 @@ defmodule Blog.Accounts.User do
     |> validate_format(:email, ~r/@/, message: "type a valid e-mail")
     |> update_change(:email, &String.downcase/1)
     |> validate_confirmation(:password, message: "password does not match")
-    |> validate_length(:password, min: 6, max: 100, message: "password should have between 6 to 100 digits")
+    |> validate_length(:password,
+      min: 6,
+      max: 100,
+      message: "password should have between 6 to 100 digits"
+    )
     |> hash_password()
   end
 
