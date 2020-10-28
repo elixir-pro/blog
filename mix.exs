@@ -44,7 +44,8 @@ defmodule Blog.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:argon2_elixir, "~> 2.0"},
-      {:credo, "~> 1.4", only: :dev, runttime: false}
+      {:credo, "~> 1.4", only: :dev, runttime: false},
+      {:sobelow, "~> 0.8"}
     ]
   end
 
