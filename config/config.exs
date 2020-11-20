@@ -23,6 +23,10 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :blog, BlogWeb.Auth.Guardian,
+  issuer: "blog",
+  secret_key: "cBqHVkspQ8QEej6LbDYu4aW8tF8xoEouLdGPsjaA822l/Hf1mmHFhV//82s64845"
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 

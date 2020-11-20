@@ -5,17 +5,25 @@ defmodule BlogWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", BlogWeb do
-    pipe_through :api
+  pipeline :auth do
+    plug BlogWeb.Auth.Pipeline
+  end
 
-    resources "/users", UserController, except: [:new, :edit]
+  scope "/api", BlogWeb do
+    pipe_through [:api, :auth]
 
     delete "/posts/:id", PostController, :delete
     get "/posts", PostController, :index
     get "/posts/:id", PostController, :show
     put "/posts/:id/update", PostController, :update
     post "/posts", PostController, :create
+  end
 
+  scope "/api", BlogWeb do
+    pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
+    resources "/session", SessionController
   end
 
   # Enables LiveDashboard only for development
